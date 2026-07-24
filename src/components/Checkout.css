@@ -1,0 +1,13 @@
+.checkout-container {
+    position: fixed;
+    background-color: darkblue;
+    height: 600px;
+    width: 500px;
+    border-radius: 50px;
+    z-index: 5000;
+    top: 50%;
+    left: 50%;
+    transform: 
+    translateX(-50%)
+    translateY(-50%);
+}
