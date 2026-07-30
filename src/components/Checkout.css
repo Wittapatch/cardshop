@@ -1,37 +1,132 @@
 .checkout-container {
     position: fixed;
-    background-color: lightblue;
-    width: min(360px, calc(100vw - 32px));
-    max-height: min(420px, calc(100vh - 32px));
-    box-sizing: border-box;
-    border-radius: 24px;
-    z-index: 5000;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-
+    z-index: 5000;
     display: flex;
+    width: min(430px, calc(100vw - 28px));
+    max-height: min(580px, calc(100vh - 28px));
     flex-direction: column;
+    padding: 22px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 28px;
+    background-color: var(--color-surface);
+    box-shadow: 0 34px 100px rgb(15 23 42 / 30%);
+    transform: translate(-50%, -50%);
+}
 
-    padding: 16px;
+.checkout-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.checkout-header span {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--color-primary);
+    font-size: 0.68rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .checkout-container h2 {
-    color: black;
-    margin: 0px;
+    margin: 0;
+    color: var(--color-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.8rem;
 }
 
+.checkout-close {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary-hover);
+    font-size: 1.45rem;
+    line-height: 1;
+    cursor: pointer;
+}
 
-/* ul has default padding */
 .checkout-container ul {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    list-style: none;
-    padding: 0px;
-    margin: 12px 0;
-
+    gap: 9px;
+    min-height: 0;
+    margin: 20px 0;
+    padding: 0;
     overflow-y: auto;
+    list-style: none;
+}
+
+.checkout-container ul li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background-color: var(--color-canvas);
+}
+
+.checkout-container ul li div {
+    display: grid;
+    gap: 3px;
+}
+
+.checkout-container ul li strong {
+    color: var(--color-ink);
+    font-size: 0.9rem;
+}
+
+.checkout-container ul li span {
+    color: var(--color-accent-dark);
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.checkout-container ul li button {
+    margin-left: auto;
+    padding: 6px 9px;
+    border: none;
+    border-radius: 999px;
+    background-color: rgb(220 38 38 / 8%);
+    color: var(--color-danger);
+    font-size: 0.72rem;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.checkout-empty {
+    display: grid;
+    min-height: 220px;
+    place-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.checkout-empty > span {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+}
+
+.checkout-empty h3 {
+    margin: 8px 0 3px;
+    color: var(--color-ink);
+}
+
+.checkout-empty p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.86rem;
 }
 
 .checkout-footer {
@@ -40,26 +135,39 @@
     justify-content: space-between;
     gap: 16px;
     margin-top: auto;
-    padding-top: 12px;
-    border-top: 1px solid rgb(0 0 0 / 20%);
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
 }
 
-.checkout-container ul li {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    background-color: darkblue;
-    color: white;
-    border-radius: 16px;
-    padding: 12px;
-}
-
-.checkout-container ul li button {
-    margin-left: auto;
+.checkout-footer strong {
+    color: var(--color-ink);
+    font-size: 0.95rem;
 }
 
 .btn-pay {
+    min-width: 102px;
     height: 42px;
-    width: 72px;
-    border-radius: 21px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--color-primary);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.btn-pay:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+@media (max-width: 520px) {
+    .checkout-container {
+        padding: 18px;
+        border-radius: 22px;
+    }
+
+    .checkout-container h2 {
+        font-size: 1.55rem;
+    }
 }

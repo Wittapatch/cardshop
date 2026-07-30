@@ -1,4 +1,3 @@
-import './App.css'
 import Navbar from "./components/Navbar";
 import { Navigate, Route, Routes} from "react-router";
 import Recommended from "./pages/Recommended";

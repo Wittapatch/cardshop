@@ -1,40 +1,29 @@
 import "./Navbar.css"
-import logoImage from "../assets/logo.jpg"
 import { NavLink } from "react-router";
 
 export default function Navbar() {
     return (
-        <>
-            <header>
-                <div className="search-section">
-                    <section id="searchPart">
-                        <img className="logoimg" src={logoImage} alt="Logo Image" />
-                        <form className="search-bar">
-                            <input type="search" 
-                            name="search" 
-                            placeholder="Search cards"
-                            aria-label="Search products"/>
-                            <button type="submit"> Search </button>
-                        </form>
-                    </section>
-                    <section id="accountPart">
-                        <button> Sign in </button>
-                        <button> Create an account </button>
-                        <button> English </button>
-                    </section>
-                </div>
+        <header className="site-header">
+            <div className="search-section">
+                <NavLink to="/recommended" className="brand-frame" aria-label="CardShop home">
+                    <span className="brand-name">Card<span>Shop</span></span>
+                    <svg className="brand-icon" viewBox="0 0 40 36" aria-hidden="true">
+                        <rect x="8" y="4" width="24" height="28" rx="4" />
+                        <rect x="3" y="9" width="24" height="23" rx="4" />
+                    </svg>
+                </NavLink>
+            </div>
 
-
-                <nav className="category-bar">
-
+            <nav className="category-bar" aria-label="Product categories">
+                <div className="category-inner">
                     <NavLink
                         to="/recommended"
                         className={({isActive}) => (isActive ? "category-link active": "category-link")}
                     >
                         Recommended
                     </NavLink>
-                </nav>
-            </header>
-        </>
+                </div>
+            </nav>
+        </header>
     );
 }

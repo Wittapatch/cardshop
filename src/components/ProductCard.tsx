@@ -43,69 +43,101 @@ export default function ProductCard ({
     }
 
     return (
-        <article className="product-card" onClick={handleCardClick} onDoubleClick={handleDoubleClick}>
-            <img className="product-img" src={image} alt={name} />
-            <div className="product-info">
-                <p>฿{price.toLocaleString()}</p>
-            </div>
+        <>
+            <article
+                className="product-card"
+                onClick={handleCardClick}
+                onDoubleClick={handleDoubleClick}
+                onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        handleCardClick();
+                    }
+                }}
+                tabIndex={0}
+                aria-label={`View details for ${name}`}
+            >
+                <div className="product-media">
+                    <img className="product-img" src={image} alt={name} />
+                    <div className="product-shade" />
 
-            <div className={showDetails ? "product-details product-details-visible": "product-details"}>
-                <h1>{name}</h1>
-                <p>{description}</p>
-                <p>Price: ฿{price.toLocaleString()}</p>
-                <p>In stock: {stock}</p>
-            </div>
-            {showDetails && (
-                <button
-                    className="btn-video"
-                    onClick={(event) => {
-                        event.stopPropagation();
-                        setShowVideo(true);
-                    }}
-                >
-                    Video
-                </button>
-            )}
+                    <span className="stock-badge">
+                        {stock > 0 ? `${stock} in stock` : "Sold out"}
+                    </span>
+
+                    <span className="product-price">
+                        ฿{price.toLocaleString()}
+                    </span>
+
+                    <div className={showDetails ? "product-details product-details-visible" : "product-details"}>
+                        <span className="details-label">Card details</span>
+                        <h3>{name}</h3>
+                        <p>{description}</p>
+                        <div className="details-meta">
+                            <strong>฿{price.toLocaleString()}</strong>
+                            <span>{stock} available</span>
+                        </div>
+                    </div>
+
+                    {showDetails && (
+                        <button
+                            className="btn-video"
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                setShowVideo(true);
+                            }}
+                        >
+                            <span aria-hidden="true">▶</span> Watch
+                        </button>
+                    )}
+
+                    <button 
+                        className="btn-addproduct"
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            onAddToCart();
+                        }}
+                        disabled={stock === 0}
+                    >
+                        Add
+                    </button>
+                </div>
+
+                <h3 className="product-name">{name}</h3>
+            </article>
 
             {showVideo && (
+                <div
+                    className="video-popup"
+                    onClick={(event) => {
+                        event.stopPropagation();
+                        setShowVideo(false); 
+                    }}
+                >
                     <div
-                        className="video-popup"
-                        onClick = {(event) => {
-                            event.stopPropagation();
-                            setShowVideo(false); 
-                        }}
+                        className="video-window"
+                        onClick={(event) => event.stopPropagation()}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={`${name} video`}
                     >
-                        <div
-                            className="video-window"
-                            onClick={(event) => event.stopPropagation()}
+                        <button
+                            className="video-close"
+                            aria-label="Close video"
+                            onClick={() => setShowVideo(false)}
                         >
-                            <button
-                                className="video-close"
-                                onClick={() => setShowVideo(false)}
-                            >
-                                ×
-                            </button>
+                            ×
+                        </button>
 
-                            <h2>{name}</h2>
+                        <h2>{name}</h2>
 
-                            <video controls autoPlay muted>
-                                <source src={video} type="video/mp4"/>
-                                Your Browser doesn't support videos.
-                            </video>
-
-                        </div>
-
+                        <video controls autoPlay muted>
+                            <source src={video} type="video/mp4"/>
+                            Your browser doesn't support videos.
+                        </video>
                     </div>
+                </div>
             )}
-            <button 
-                className="btn-addproduct"
-                onClick={(event) => {
-                    event.stopPropagation();
-                    onAddToCart();
-                }}
-            > 
-                Buy 
-            </button>
-        </article>
+        </>
     );
 }

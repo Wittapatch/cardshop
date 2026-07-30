@@ -1,120 +1,142 @@
-header {
-    display: flex;
-    flex-direction: column;
+.site-header {
     position: fixed;
-    width: 100%;
+    inset: 0 0 auto;
     z-index: 100;
+    border-bottom: 1px solid rgb(15 23 42 / 8%);
+    background-color: rgb(255 255 255 / 92%);
+    box-shadow: 0 8px 30px rgb(15 23 42 / 7%);
+    backdrop-filter: blur(16px);
 }
 
 .search-section {
-    display:flex;
-    background-color: #061E29;
-    padding: 10px;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    height: 80px;
-}
-
-#searchPart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-
-.search-bar {
-    display: flex;
     position: relative;
-    height: 40px;
-}
-
-.search-bar input {
-    flex: 1;
-    padding: 20px;
-    border-radius: 10px;
-    border: 0px;
-}
-
-.search-bar button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 6px;
-    margin-right: 0px;
-    height: 30px;
-}
-
-#accountPart {
     display: flex;
-    margin-left: auto;
-    gap: 20px;
     align-items: center;
     justify-content: center;
+    height: 76px;
+    padding: 8px 24px;
 }
 
-#accountPart button {
-    height: 30px;
-}
-
-.logoimg {
-    height: 50px;
-    width: 50px;
-    border-radius: 25px;
-}
-
-@media(max-width: 768px) {
-    .search-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        gap: 20px;
-        padding: 20px;
-        height: auto;
-    }
-
-    h1 {
-        margin:0px;
-    }
-
-    #accountPart {
-        margin: 0px;
-    }
-}
-
-/* Category bar styling */
-.category-bar {
-    background-color: #061E29;
-    display:flex;
+.brand-frame {
+    position: absolute;
+    left: 50%;
+    display: flex;
     align-items: center;
-    border-bottom: 1px #1D546D solid;
+    justify-content: center;
+    gap: 8px;
+    width: 224px;
+    height: 62px;
+    overflow: hidden;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--color-surface), var(--color-primary-soft));
+    box-shadow:
+        0 10px 24px rgb(37 99 235 / 14%),
+        0 0 0 4px rgb(255 255 255 / 55%);
+    text-decoration: none;
+    isolation: isolate;
+    transform: translateX(-50%);
+}
+
+.brand-frame::after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    box-shadow: 0 0 22px rgb(37 99 235 / 12%) inset;
+    content: "";
+    pointer-events: none;
+}
+
+.brand-name {
+    z-index: 2;
+    color: var(--color-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.75rem;
+    font-style: italic;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.brand-name span {
+    color: var(--color-primary);
+}
+
+.brand-icon {
+    z-index: 2;
+    width: 30px;
     height: 30px;
-    padding: 0px 10px;
+    fill: var(--color-accent-soft);
+    stroke: var(--color-accent);
+    stroke-width: 2;
+}
 
-    /* Making it able to scroll horizontally */
+.category-bar {
+    height: 44px;
     overflow-x: auto;
+    border-top: 1px solid rgb(15 23 42 / 6%);
+    background-color: rgb(248 250 252 / 88%);
     scrollbar-width: none;
+}
 
-    /* Makes it to where it stays on one line */
-    white-space: nowrap;
+.category-bar::-webkit-scrollbar {
+    display: none;
+}
 
+.category-inner {
+    display: flex;
+    align-items: stretch;
+    width: min(1182px, calc(100% - 32px));
+    height: 100%;
+    margin: 0 auto;
 }
 
 .category-link {
-    
-    border: none;
-    background: transparent; 
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    padding:10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 150ms ease;
 }
 
+.category-link::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    background-color: var(--color-primary);
+    content: "";
+    opacity: 0;
+    transform: scaleX(0.6);
+    transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.category-link:hover,
 .category-link.active {
-    color: orangered;
-    text-decoration: underline;
-    background-color:black;
-    padding:10px;
+    color: var(--color-primary);
+}
+
+.category-link.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+@media (max-width: 520px) {
+    .search-section {
+        height: 68px;
+    }
+
+    .brand-frame {
+        width: 190px;
+        height: 52px;
+        border-radius: 15px;
+    }
+
+    .category-inner {
+        width: calc(100% - 24px);
+    }
 }
