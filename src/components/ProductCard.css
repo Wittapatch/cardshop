@@ -65,3 +65,62 @@
     border-radius: 25px;
     border: none;
 }
+
+/* Video part */
+
+.btn-video {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    z-index: 11;
+
+    padding: 10px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn-addproduct {
+    z-index: 11;
+}
+
+.video-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.video-window {
+    position: relative;
+    width: min(700px, 100%);
+    padding: 20px;
+    border-radius: 20px;
+    background-color: darkblue;
+}
+
+.video-window video {
+    display: block;
+    width: 100%;
+    max-height: 70vh;
+    border-radius: 12px;
+}
+
+.video-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+
+    font-size: 24px;
+    cursor: pointer;
+}
