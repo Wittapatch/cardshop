@@ -20,7 +20,7 @@ const recommendedProducts: Product[] = [
         image: logoImage,
         price: 10000,
         stock: 5,
-        video: "/public/testvideo.mp4",
+        video: "/testvideo.mp4",
     },
     {
         name: "Dragon Card",
@@ -28,7 +28,7 @@ const recommendedProducts: Product[] = [
         image: logoImage,
         price: 5000,
         stock: 8,
-        video: "/public/testvideo.mp4",
+        video: "/testvideo.mp4",
     },
     {
         name: "Tiger Card",
@@ -36,7 +36,7 @@ const recommendedProducts: Product[] = [
         image: logoImage,
         price: 2500,
         stock: 12,
-        video: "/public/testvideo.mp4",
+        video: "/testvideo.mp4",
     },
     {
         name: "Phoenix Card",
@@ -44,7 +44,7 @@ const recommendedProducts: Product[] = [
         image: logoImage,
         price: 8000,
         stock: 3,
-        video: "/public/testvideo.mp4",
+        video: "/testvideo.mp4",
     },
 ];
 
