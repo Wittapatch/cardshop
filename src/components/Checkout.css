@@ -1,13 +1,65 @@
 .checkout-container {
     position: fixed;
-    background-color: darkblue;
-    height: 600px;
-    width: 500px;
-    border-radius: 50px;
+    background-color: lightblue;
+    width: min(360px, calc(100vw - 32px));
+    max-height: min(420px, calc(100vh - 32px));
+    box-sizing: border-box;
+    border-radius: 24px;
     z-index: 5000;
     top: 50%;
     left: 50%;
-    transform: 
-    translateX(-50%)
-    translateY(-50%);
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 16px;
+}
+
+.checkout-container h2 {
+    color: black;
+    margin: 0px;
+}
+
+
+/* ul has default padding */
+.checkout-container ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    padding: 0px;
+    margin: 12px 0;
+
+    overflow-y: auto;
+}
+
+.checkout-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid rgb(0 0 0 / 20%);
+}
+
+.checkout-container ul li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: darkblue;
+    color: white;
+    border-radius: 16px;
+    padding: 12px;
+}
+
+.checkout-container ul li button {
+    margin-left: auto;
+}
+
+.btn-pay {
+    height: 42px;
+    width: 72px;
+    border-radius: 21px;
 }

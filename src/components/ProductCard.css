@@ -52,6 +52,16 @@
 .product-details-visible {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
+    /* Keep both clicks aimed at the card so onDoubleClick can fire. */
+    pointer-events: none;
 }
 
+.btn-addproduct {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    border: none;
+}

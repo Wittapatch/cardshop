@@ -1,8 +1,6 @@
 import "./ProductCard.css"
 import {useRef, useState} from "react";
 
-
-
 type ProductCardProps = {
     name: string
     description: string
@@ -54,6 +52,15 @@ export default function ProductCard ({
                 <p>Price: ฿{price.toLocaleString()}</p>
                 <p>In stock: {stock}</p>
             </div>
+
+            <button 
+                className="btn-addproduct"
+                onClick={(event) => {
+                    event.stopPropagation();
+                    onAddToCart();
+                }}
+            > 
+            Buy </button>
         </article>
     );
 }

@@ -33,13 +33,6 @@ export default function Navbar() {
                     >
                         Recommended
                     </NavLink>
-
-                    <NavLink
-                        to="/mylist"
-                        className={({isActive}) => (isActive ? "category-link active": "category-link")}
-                    >
-                        MyList
-                    </NavLink>
                 </nav>
             </header>
         </>

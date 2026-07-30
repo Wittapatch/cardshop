@@ -1,30 +1,31 @@
 import "./Shopbutton.css"
 import Checkout from "./Checkout";
 import {useState} from "react";
+import type { Product } from "../pages/Recommended";
+
 
 type ShopbuttonProp = {
-    cartCount: number;
+    cart: Product[];
+    RemoveFromCart: (productIndex: number) => void;
 };
 
-
-export default function Shopbutton({cartCount}: ShopbuttonProp) {
+export default function Shopbutton({cart, RemoveFromCart}: ShopbuttonProp) {
     const [showCheckOut, setshowCheckOut] = useState(false);
     
-    function handleCheckout() {
-        setshowCheckOut((current) => !current);
-    }
-
     return(
         <> 
             <div className="btn-container">
-                <button className="shop-btn" onClick={handleCheckout}>Shop</button>
-                {cartCount > 0 && (
+                <button className="shop-btn" onClick={() => setshowCheckOut((current) => !(current))}>Shop</button>
+                {cart.length > 0 && (
                     <span className="cart-count">
-                        {cartCount}
+                        {cart.length}
                     </span>
                 )}
             </div>
-            {showCheckOut && <Checkout/>}
+            {showCheckOut && <Checkout
+                cart={cart}
+                RemoveFromCart={RemoveFromCart}
+            />}
         </>
     );
 }

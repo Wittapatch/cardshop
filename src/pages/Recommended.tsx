@@ -2,9 +2,17 @@ import "./Recommended.css"
 import logoImage from "../assets/logo.jpg"
 import ProductCard from "../components/ProductCard";
 import Shopbutton from "../components/Shopbutton";
-import {useState} from "react";
+import {useState} from "react"
 
-const recommendedProducts = [
+export type Product = {
+    name: string;
+    description: string;
+    image: string;
+    price: number;
+    stock: number;
+};
+
+const recommendedProducts: Product[] = [
     {
         name: "Gorilla Card",
         description: "A rare collectible Gorilla card.",
@@ -36,10 +44,15 @@ const recommendedProducts = [
 ];
 
 export default function Recommended() {
-    const [cartCount, setCartCount] = useState(0);
+    // Initially set it to an empty list
+    const [cart, setCart] = useState<Product[]>([]);
 
-    function addToCart() {
-        setCartCount((currentCount) => currentCount + 1);
+    function addToCart(product: Product) {
+        setCart((currentCart) => [...currentCart, product]);
+    }
+
+    function removeFromCart(productIndex: number) {
+        setCart((currentCart) => currentCart.filter((_, index) => index !== productIndex))
     }
 
     return(
@@ -54,11 +67,14 @@ export default function Recommended() {
                         image={product.image}
                         price={product.price}
                         stock={product.stock}
-                        onAddToCart={addToCart}
+                        onAddToCart={() => addToCart(product)}
                     />
                 ))}
             </div>
-            <Shopbutton cartCount={cartCount} />
+            <Shopbutton 
+                cart={cart} 
+                RemoveFromCart={removeFromCart}
+            />
         </main>
     );
 }
